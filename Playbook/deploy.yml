@@ -1,0 +1,97 @@
+---
+- hosts: all
+  become: true
+  become_user: root
+  gather_facts: no
+  vars: remote_path
+  tasks:
+   - name: installing required packages
+     apt:
+       name:
+         - git
+         - python3-pip
+         - python3-venv
+         - uwsgi
+   - name: Checking for Venv/env folder if present delete it and create one
+     file:
+       path: /home/devops/Test/env
+       state: absent
+       force: yes
+     ignore_errors: yes
+   - name: pull repo from git main
+     git:
+        repo: https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git
+        dest: /home/devops/Test
+        force: yes
+        update: yes
+
+#   - name: Creating env
+#     file:
+#       path: /home/devops/Test
+#       state: directory
+#       owner: devops
+#       group: devops
+#       mode: "0755"
+   - name: Create virtual environment
+     command: python3 -m venv /home/devops/Test/env
+
+   - name: changing permission for env
+     file:
+       path: /home/devops/Test/env/bin/activate
+       owner: devops
+       group: devops
+       mode: "0755"
+
+#   - name: checking if the env file is present or not
+#     find:
+#       paths: /home/devops/Test/
+#       patterns: env
+#     register: env_file
+#   - debug:
+#       var: env_file
+   - name: activating env
+     shell: "/home/devops/Test/env/bin/activate"
+     args:
+       executable: /bin/bash
+
+
+   - name: Change requirements.txt file ownership
+     file:
+       path: /home/devops/Test/requirements.txt
+       owner: devops
+       group: devops
+   - name: install dependecies
+     pip:
+        requirements: /home/devops/Test/requirements.txt
+        virtualenv: /home/devops/Test/venv/bin
+   - name: making requiremets.txt executable
+     file:
+       path: /home/devops/Test/requirements.txt
+       mode: u+x
+
+   - name: instlling requiremts.txt
+    # shell: "/home/devops/Test/env/bin/activate"
+     pip:
+       requirements: /home/devops/Test/requirements.txt
+
+   - name: Run django Migration
+     shell: /home/devops/Test/env/bin/activate && python3 manage.py migrate
+     args:
+        chdir: /home/devops/Test/
+
+   - name: feeding data
+     shell: python3 manage.py feed_data_to_model
+
+     args:
+       chdir: /home/devops/Test/
+   - name: collecting static
+     command: pyuthon3 manage.py collectstatic --noinput
+     args:
+        chdir: /home/devops/Test/static
+        become: true
+   - name:  start gunicorn server
+     command: /home/devops/Test/env/bin/gunicorn weather_app.wsgi:appliaction --bind 127.0.0.1:8000
+     async: 0
+     poll: 0
+
+
