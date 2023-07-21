@@ -1,0 +1,21 @@
+name: Testing for ansible code
+
+on: [push]
+
+jobs:
+  Deplyoing_Ansible_code:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Testing code
+      uses: actions/checkout@v3
+    - name: installing python
+      uses: actions/setup-python@v2
+      with:
+       python-version: 3.8
+       
+    - name: installing ansible
+      run: pip install ansible
+   
+    - name: deploying Ansible code
+      
+      run: ansible-playbook ./deploy.yml -i inventory 
