@@ -18,4 +18,4 @@ jobs:
    
     - name: deploying Ansible code
       
-      run: ansible-playbook ./deploy.yml -i inventory 
+      run: ansible-playbook ./Playbook/deploy.yml -i inventory

@@ -50,33 +50,45 @@
 #     register: env_file
 #   - debug:
 #       var: env_file
-   - name: activating env
+   - name: activating env and installing dependensies
+     block:   #for executing block content once
+       - name: activating env
+         shell: |
+          source /home/devops/Test/env/bin/activate
+         args:
+           executable: /bin/bash
+         environment:
+           PATH: "{{ansible_env.PATH}}"
+       - name: making requiremt executable
+         file:
+           path: /home/devops/Test/requirements.txt
+           mode: u+x
+       - name: installing depen
+         pip:
+           requirements: /home/devops/Test/requirements.txt
+           virtualenv: /home/devops/Test/env/bin
+     become_user: devops
+     become_method: root
 
-     shell: |
-      source /home/devops/Test/env/bin/activate
-     args:
-       executable: /bin/bash
-
-
-   - name: Change requirements.txt file ownership
-     file:
-       path: /home/devops/Test/requirements.txt
-       owner: devops
-       group: devops
+#   - name: Change requirements.txt file ownership
+#     file:
+#       path: /home/devops/Test/requirements.txt
+#       owner: devops
+#       group: devops
 #   - name: install dependecies
 #     pip:
 #        requirements: /home/devops/Test/requirements.txt
 #        virtualenv: /home/devops/Test/env/bin
-   - name: making requiremets.txt executable
-     file:
-       path: /home/devops/Test/requirements.txt
-       mode: u+x
+#   - name: making requiremets.txt executable
+#     file:
+#       path: /home/devops/Test/requirements.txt
+#       mode: u+x
 
-   - name: instlling requiremts.txt
-    # shell: "/home/devops/Test/env/bin/activate"
-     pip:
-       requirements: /home/devops/Test/requirements.txt
-       virtualenv: /home/devops/Test/env/bin
+#   - name: instlling requiremts.txt
+#    # shell: "/home/devops/Test/env/bin/activate"
+#     pip:
+#       requirements: /home/devops/Test/requirements.txt
+#       virtualenv: /home/devops/Test/env/bin
 
    - name: Run django Migration
      shell: |
@@ -92,7 +104,6 @@
 
    - name:  start gunicorn server
      shell: |
-      source /home/devops/Test/env/bin/activate 
       /home/devops/Test/env/bin/gunicorn weather_app.wsgi:application --bind 192.168.102.238:8000
      args:
        executable: /bin/bash
