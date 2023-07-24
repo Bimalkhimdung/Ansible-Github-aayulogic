@@ -1,0 +1,20 @@
+---
+- name: installing with ssh
+  hosts: all
+  gather_facts: no
+  vars:
+    repo: "<url>"
+    dest: "/home/ubuntu/"
+    ssh_key: "~/.ssh/id_rsa"
+  tasks:
+   - name: installing git
+     apt:
+      name: installing git pkg
+       - git
+      state: present
+     become: true
+   - name: installing git
+     git:
+      repo: "{{repo}}"
+      dest: "{{dest}}"
+      key_file: "{{ssh_key}}"

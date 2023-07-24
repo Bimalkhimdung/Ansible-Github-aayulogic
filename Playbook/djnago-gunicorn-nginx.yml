@@ -1,0 +1,85 @@
+---
+- name: Djnago-gunicorn-nginx configuration
+  hosts: 192.168.102.238
+  become: yes
+  become_user: root
+  gather_facts: no
+
+  #defining varibales
+  vars:
+    remote_dest: /home/devops/Test
+    git_repo:  https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git
+#Defining tasks
+  tasks:
+    - name: installing required packages
+      apt:
+        name:
+          - git
+          - python3-pip
+          - nginx
+        state: present
+#    - name: stopping nginx if running
+#      service:
+#        name: nginx
+#        state: stopped
+    - name: configuring nginx
+      template:
+        src: /etc/nginx/sites-available/templete.conf.j2
+        dest: /etc/nginx/sites-available/weather_app
+        owner: root
+        group: root
+      notify: restart nginx service
+    - name: Create a symbolic link to enable the Nginx site
+      file:
+          src: /etc/nginx/sites-available/weather_app
+          dest: /etc/nginx/sites-enabled/weather_app
+          state: link
+    - name: Restarting nginx service
+      service:
+        name: nginx
+        state: restarted
+    - name: Copying source code from git repo
+      git:
+        repo: "{{ git_repo }}"
+        dest: "{{ remote_dest }}/"
+        force: yes
+        update: yes
+    - name: creating virtual env
+      shell: python3 -m venv {{ remote_dest }}/env
+      args:
+        chdir: "{{ remote_dest }}"
+    - name: changing permission to env
+      file:
+        path: "{{ remote_dest }}/env/activate"
+        owner: devops
+        group: devops
+        mode: "0755"
+    - name: activating env
+      block:
+        - name: Activating env
+          shell: source {{ remote_dest }}/env/activate
+          args:
+            executable: /bin/bash
+          environment:
+            PATH: "{{ansible_env.PATH}}"
+        - name: Making requirements.txt executable
+          file:
+            path: "{{ remote_dest }}/requirements.txt"
+            mode: u+x
+        - name: installing requirements dependencies
+          shell: pip install -r requirements.txt
+          args:
+            chdir: "{{ remote_dest }}"
+        - name: Making data migration
+          shell: python3 manage.py migrate
+          args:
+            chdir: "{{ remote_dest }}"
+
+        - name: Feeding data to model
+          shell: python3 manage.py feed_data_to_model
+          args:
+            chdir: "{{ remote_dest }}"
+        - name: Starting Gunicorn server
+          shell: "{{ remote_dest }}/env/bin/gunicorn weather_app.wsgi:application --bind 192.168.102.238:8000"
+          args:
+            chdir: "{{ remote_dest }}"

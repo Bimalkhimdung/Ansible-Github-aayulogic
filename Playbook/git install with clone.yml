@@ -1,0 +1,17 @@
+---
+- name: Fetching form git repo
+  hosts: all
+
+  tasks:
+
+  - name: installing git packages
+    apt:
+     name:
+      - git
+    state: present
+    become: true
+#From HTTPS
+  - name: Fteching form git
+    repo: <url of your repo>
+    dest: /home/devops/
+
