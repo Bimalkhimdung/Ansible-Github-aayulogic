@@ -5,7 +5,7 @@ ENV Remote_dir /home/devops/Test
 
 #installing packages
 
-RUN apt update && apt install -y git && python3-pip
+RUN apt update && apt install -y git
 
 #cloning git repo
 RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git $Remote_dir
