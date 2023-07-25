@@ -64,7 +64,7 @@
 #          chdir: /home/devops/Test/
 
        - name:  start gunicorn server
-         shell: /home/devops/Test/env/bin/gunicorn weather_app.wsgi:application --bind 192.168.102.238:8000
+         shell: /home/devops/Test/env/bin/gunicorn weather_app.wsgi:application --reload --bind 192.168.102.238
          args:
            chdir: "{{ remote_dir}}"
 

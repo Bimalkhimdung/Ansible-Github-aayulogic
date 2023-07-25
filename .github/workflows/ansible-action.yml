@@ -1,6 +1,8 @@
 name: Testing for ansible code
 
-on: [push]
+on:
+  workflow_dispatch:
+
 
 jobs:
   Deplyoing_Ansible_code:

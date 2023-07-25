@@ -37,7 +37,7 @@
     - name: Restarting nginx service
       service:
         name: nginx
-        state: restarted
+        state: started
     - name: Copying source code from git repo
       git:
         repo: "{{ git_repo }}"

@@ -1,1 +1,17 @@
-remote_path: /home/devops/Test
+[Unit]
+Description=gunicorn daemon
+#Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=devops
+Group=www-data
+WorkingDirectory=/home/devops/Test
+
+ExecStart=/home/devops/Test/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/devops/Test/weather_app.sock weather_app.wsgi:application
+
+#ExecStart=/home/devops/weather-app-backend-aayulogic/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/run/gunicorn.sock weather_app.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+~
