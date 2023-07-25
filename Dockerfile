@@ -24,5 +24,7 @@ RUN . $Remote_dir/env/bin/activate && python3 manage.py migrate
 EXPOSE 8000
 
 #starting gunicorn
+RUN . $Remote_dir/env/bin/activate \
+    /home/devops/Test/env/bin/gunicorn weather_app.wsgi:application --reload --bind 192.168.102.238:8000
 
-CMD ["/home/devops/Test/env/bin/gunicorn","weather_app.wsgi:applicaton", "--bind", "192.168.102.238:8000"]
+#CMD ["/home/devops/Test/env/bin/gunicorn","weather_app.wsgi:applicaton", "--bind", "192.168.102.238:8000"]
