@@ -16,8 +16,15 @@ jobs:
        python-version: 3.8
        
     - name: installing ansible
-      run: pip install ansible
+      run: |
+        sudo apt update
+        sudo apt install ansible -y
    
     - name: deploying Ansible code
-      
-      run: ansible-playbook ./Playbook/test.yml -i inventory
+      env:
+        sec_key: ${{secret.server_key}}
+
+      run: |
+        echo "${{ sec_key }}" > ssh_key.pem
+        chmod 400 ssh_key.pem
+        ansible-playbook --private-key ssh_key.pem test.yml -i inventory
