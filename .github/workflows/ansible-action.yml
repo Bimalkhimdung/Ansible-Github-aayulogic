@@ -21,7 +21,7 @@ jobs:
    
     - name: deploying Ansible code
       env:
-        sec_key: ${{secrets.SERVER_KEY}}
+        sec_key: ${{ secrets.SEVER_KEY }}
 
       run: |
         echo "${{ sec_key }}" > ssh_key.pem
