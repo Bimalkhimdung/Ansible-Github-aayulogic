@@ -1,0 +1,22 @@
+
+
+name: Testing with docker and docker compose
+on: [push]
+
+jobs:
+  Deploying-with-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking for code
+        uses: actions/checkout@v2
+      - name: setting up docker
+        uses: actions/setup-docker@v1
+
+      - name: Deploying docker image
+        run: docker build -t weather_app .
+
+      - name: Run and test docker compose
+        run: docker-compose up -d
+        env:
+          DJANGO_SETTING_MODULE: "weather_app.settings"
+
