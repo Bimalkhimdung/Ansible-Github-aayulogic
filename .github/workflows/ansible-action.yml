@@ -17,9 +17,9 @@ jobs:
     - name: installing ansible
       run: |
         sudo apt update
-        sudo apt install ansible -y
+        sudo apt install ansible
     - name: Running ansible
-      uses: action/ansible@v2
+      uses: actions-ansible@v2
       with:
         playbook: ./Playbook/test/yml
         inventory: ./inventory
