@@ -20,4 +20,4 @@ jobs:
    
     - name: deploying Ansible code
       
-      run: ansible-playbook ./Playbook/deploy.yml -i inventory
+      run: ansible-playbook ./Playbook/test.yml -i inventory
