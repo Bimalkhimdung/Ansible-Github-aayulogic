@@ -25,4 +25,4 @@ EXPOSE 8000
 
 #starting gunicorn
 
-CMD ["/home/devops/Test/env/bin/gunicorn","weather_app.wegi:applicaton", "--bind", "192.168.102.238:8000"]
+CMD ["/home/devops/Test/env/bin/gunicorn","weather_app.wsgi:applicaton", "--bind", "192.168.102.238:8000"]
