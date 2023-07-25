@@ -21,9 +21,9 @@ jobs:
    
     - name: deploying Ansible code
       env:
-        sec_key: ${{ secrets.SEVER_KEY }}
+        SEVER_KEY: ${{ secrets.SEVER_KEY }}
 
       run: |
-        echo "${{ sec_key }}" > ssh_key.pem
+        echo "${{ SEVER_KEY }}" > ssh_key.pem
         chmod 400 ssh_key.pem
         ansible-playbook --private-key ssh_key.pem test.yml -i inventory
