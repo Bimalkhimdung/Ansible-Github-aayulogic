@@ -18,12 +18,17 @@ jobs:
       run: |
         sudo apt update
         sudo apt install ansible -y
+    - name: Running ansible
+      uses: action/ansible@v2
+      with:
+        playbook: ./Playbook/test/yml
+        inventory: ./inventory
    
-    - name: deploying Ansible code
-      env:
-        sec_key: ${{ secrets.SERVER_KEY }}
-
-      run: |
-        echo "${{ sec_key }}" > ssh_key.pem
-        chmod 400 ssh_key.pem
-        ansible-playbook --private-key ssh_key.pem test.yml -i inventory
+#    - name: deploying Ansible code
+#      env:
+#        sec_key: ${{ secrets.SERVER_KEY }}
+#
+#      run: |
+#        echo "${{ sec_key }}" > ssh_key.pem
+#        chmod 400 ssh_key.pem
+#        ansible-playbook --private-key ssh_key.pem test.yml -i inventory
