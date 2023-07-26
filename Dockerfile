@@ -1,7 +1,7 @@
 FROM python:3.8
 
 #seting env vatriable
-ENV Remote_dir /home/devops/Test
+ENV Remote_dir /home/devops/Test/
 
 #installing packages
 
@@ -14,7 +14,6 @@ RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git
 
 Run python3 -m venv $Remote_dir/env
 
-WORKDIR $Remote_dir
 RUN . $Remote_dir/env/bin/activate && pip install -r requirements.txt
 
 #making migration
