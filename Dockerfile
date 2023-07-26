@@ -11,14 +11,16 @@ RUN apt update && apt install -y git  python3-venv
 RUN useradd -m devops
 USER devops
 
-RUN mkdir -p $Remote_dir
-WORKDIR $Remote_dir
+
 #cloning git repo
 RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git .
+RUN mkdir -p $Remote_dir
 
+COPY . $Remote_dir
+WORKDIR $Remote_dir
 #creating virtual env
 
-Run python3 -m venv $Remote_dir/env
+Run python3 -m venv $Remote_dir/env/
 
 RUN . $Remote_dir/env/bin/activate && pip install -r requirements.txt
 
