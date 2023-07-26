@@ -14,7 +14,7 @@ USER devops
 
 #cloning git repo
 RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git .
-RUN mkdir -p $Remote_dir
+#RUN mkdir -p $Remote_dir
 
 COPY . $Remote_dir
 WORKDIR $Remote_dir
