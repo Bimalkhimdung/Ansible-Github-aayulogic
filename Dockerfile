@@ -8,7 +8,7 @@ ENV Remote_dir /home/devops/Test
 RUN apt update && apt install -y git  python3-venv
 WORKDIR $Remote_dir
 #cloning git repo
-RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git
+RUN git clone https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git .
 
 #creating virtual env
 
