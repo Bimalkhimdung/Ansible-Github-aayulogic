@@ -22,7 +22,7 @@ RUN . $Remote_dir/env/bin/activate && python3 manage.py migrate
 
 #feeding data to model
 
-RUN . $Remote_dir/env/bin/activate && python3 manage.py feed_data_to_model
+#RUN . $Remote_dir/env/bin/activate && python3 manage.py feed_data_to_model
 #exposing gunicorn
 
 EXPOSE 8000
