@@ -24,7 +24,7 @@ jobs:
           mkdir -p /home/devops/.ssh
           ssh-keyscan ${{ secrets.SERVER_IP }} >> /home/devops/.ssh/known_hosts
 
-#      - name: Transfering docker image
+#     - name: Transfering docker image
 #        uses: actions/scp-action@v2
 #        with:
 #          host: ${{ secrets.SERVER_IP }}
