@@ -16,21 +16,31 @@ jobs:
         run: docker build -t weather_app .
       - name: saving docker image
         run: docker save weather_app > weather_app_image.tar
-      - name: Transfering docker image
-        uses: actions/scp-action@v2
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SEVER_USERNAME }}
-          key: ${{ secrets.SERVER_SSH }}
-          source: weather_app.tar
-          target: /home/devops/test/
+    #generating ssh key
+      - name: genereting ssh on target server
+        run: |
+          sudo apt update
+          sudo apt install -y openssh -client
+          mkdir -p /home/devops/.ssh
+          ssh-keyscan ${{ secrets.SERVER_IP }} >> /home/devops/.ssh/known_hosts
+
+#      - name: Transfering docker image
+#        uses: actions/scp-action@v2
+#        with:
+#          host: ${{ secrets.SERVER_IP }}
+#          username: ${{ secrets.SEVER_USERNAME }}
+#          key: ${{ secrets.SERVER_SSH }}
+#          source: weather_app.tar
+#          target: /home/devops/test/
+      - name: Transfaring docker image
+        run: scp -i ${{secrets.SERVER_KEY }} weather_app_image.tar ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }}:/home/devops/Test/
       # Step 5: Load the Docker image on the deployment target server
       - name: Load Docker image
-        run: ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker load -i /path/to/destination/weather_app_image.tar"
+        run: ssh -i ${{ secrets.SERVER_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker load -i /home/devops/test//weather_app_image.tar"
 
       # Step 6: Run the Docker container on the deployment target server
       - name: Run Docker container
-        run: ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker run -d -p 8000:8000 weather_app"
+        run: ssh -i ${{ secrets.SERVER_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker run -d -p 8000:8000 weather_app"
 #      - name: Run and test docker compose
 #        run: docker-compose up -d
 #        env:
