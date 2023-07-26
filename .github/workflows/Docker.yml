@@ -9,8 +9,7 @@ jobs:
     steps:
       - name: checking for code
         uses: actions/checkout@v2
-#      - name: setting up docker
-#        uses: actions/setup-docker@v1
+
 
       - name: Deploying docker image
         run: docker build -t weather_app .
