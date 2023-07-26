@@ -1,7 +1,9 @@
 name: Testing with docker and docker compose
-on: [push]
-env:
-  remote_path: /home/devops/test/
+on:
+  push:
+    branches:
+      -main
+
 
 jobs:
   Deploying-with-docker:
@@ -21,7 +23,7 @@ jobs:
           username: ${{ secrets.SEVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH }}
           source: weather_app.tar
-          target: ${{ remote_path }}
+          target: /home/devops/test/
       # Step 5: Load the Docker image on the deployment target server
       - name: Load Docker image
         run: ssh ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_IP }} "docker load -i /path/to/destination/weather_app_image.tar"
