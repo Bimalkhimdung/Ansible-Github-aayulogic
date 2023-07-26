@@ -6,6 +6,11 @@ ENV Remote_dir /home/devops/Test/
 #installing packages
 
 RUN apt update && apt install -y git  python3-venv
+
+# Create a non-root user (optional but recommended for security)
+RUN useradd -m devops
+USER devops
+
 RUN mkdir -p $Remote_dir
 WORKDIR $Remote_dir
 #cloning git repo
