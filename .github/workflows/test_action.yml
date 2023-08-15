@@ -19,9 +19,12 @@ jobs:
      - name: installing ansible
        run: pip install ansible ansible-lint
      - name: clearing existing key
-       run: ssh-add -D     
-     - name: Configuring ssh connection
-       uses: webfactory/ssh-agent@v0.5.1
+       run: |
+          eval $( ssh-agent -s )
+          ssh-add - <<< "$SSH_PRIVATE_KEY"
+          ssh-add -D
+  # - name: Configuring ssh connection
+   #  uses: webfactory/ssh-agent@v0.5.1
        with:
          ssh-private-key: ${{ secrets.SERVER_PRIVATE_KEY }}
 
