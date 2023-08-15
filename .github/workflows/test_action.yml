@@ -32,6 +32,6 @@ jobs:
          cd ..
          echo "$(pwd)"
 
-         ansible-playbook ./Playbook/gitaction.yml -i inventory
+         ansible-playbook Playbook/gitaction.yml -i inventory
 
             
