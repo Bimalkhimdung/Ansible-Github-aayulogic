@@ -19,6 +19,6 @@ jobs:
      - name: installing ansible
        run: pip install ansible ansible-lint     
      - name: running playbook
-       run: anible-playbook ./Playbook/gitaction.yml -i inventory
+       run: ansible-playbook ./Playbook/gitaction.yml -i inventory
 
             
