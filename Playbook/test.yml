@@ -1,5 +1,5 @@
 ---
-- hosts: 192.168.102.238
+- hosts: loacalhost
   become: true
   become_user: root
   gather_facts: no

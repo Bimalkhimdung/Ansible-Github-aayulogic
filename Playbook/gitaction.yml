@@ -1,0 +1,18 @@
+--- 
+- hosts: server
+  gather_facts: no
+  become: true
+  become_user: root
+
+  tasks:
+     - name: installing python 
+       apt:
+           name: python3
+           state: present
+     - name: installing django 
+       shell: pip install django 
+     - name: django version
+       
+       debug:
+         msg: django installed 
+         
