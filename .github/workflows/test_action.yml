@@ -23,11 +23,6 @@ jobs:
           eval $( ssh-agent -s )
           ssh-add - <<< "$SSH_PRIVATE_KEY"
           ssh-add -D
-  # - name: Configuring ssh connection
-   #  uses: webfactory/ssh-agent@v0.5.1
-       with:
-         ssh-private-key: ${{ secrets.SERVER_PRIVATE_KEY }}
-
      - name: running playbook
        run: ansible-playbook ./Playbook/gitaction.yml -i inventory
 
