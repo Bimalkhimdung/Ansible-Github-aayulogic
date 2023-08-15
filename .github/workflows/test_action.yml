@@ -1,0 +1,24 @@
+name: ansible run action
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  ansible_installation:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: checking code
+      uses: actions/checkout@v2
+
+    - name: installing python
+      uses: actions/setup-python@v1
+      with:
+        python-version: "3.8"
+    - name: installing ansible
+      run: pip install ansible ansible-lint     
+    - name: running playbook
+      run: anible-playbook ./Playbook/gitaction.yml -i inventory
+
+            
