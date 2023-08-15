@@ -29,7 +29,9 @@ jobs:
      - name: running playbook
        
        run: |
+         cd ..
          echo "$(pwd)"
+
          ansible-playbook ./Playbook/gitaction.yml -i inventory
 
             
