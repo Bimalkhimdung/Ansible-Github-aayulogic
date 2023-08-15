@@ -2,7 +2,8 @@ name: Testing with docker and docker compose
 on:
   push:
     branches:
-      - main
+      - none
+workflow_dispatch:
 
 
 jobs:
