@@ -14,6 +14,7 @@ jobs:
 
      - name: establishing ssh connection
        run: |
+            mkdir -p ~/.ssh
             echo "${{ secrets.SERVER_PRIVATE_KEY }}" > ~/.ssh/id_rsa 
             chmod 600 ~/.ssh/id_rsa
 
