@@ -27,7 +27,7 @@ jobs:
        run: pip install ansible ansible-lint
 
      - name: running playbook
-       working-directory: $(pwd)
+       working-directory: ./
        run: ansible-playbook ./Playbook/gitaction.yml -i inventory
 
             
