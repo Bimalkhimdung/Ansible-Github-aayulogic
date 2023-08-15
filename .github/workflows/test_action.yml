@@ -11,6 +11,9 @@ jobs:
     steps:
      - name: checking code
        uses: actions/checkout@v2
+     - name: establishing ssh connection
+       run: run: echo "${{ secrets.SERVER_PRIVATE_KEY }}" > ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
+
 
      - name: installing python
        uses: actions/setup-python@v1
@@ -18,11 +21,7 @@ jobs:
          python-version: "3.8"
      - name: installing ansible
        run: pip install ansible ansible-lint
-     - name: clearing existing key
-       run: |
-          eval $( ssh-agent -s )
-          ssh-add - <<< "$SSH_PRIVATE_KEY"
-          ssh-add -D
+
      - name: running playbook
        run: ansible-playbook ./Playbook/gitaction.yml -i inventory
 
