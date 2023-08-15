@@ -17,7 +17,9 @@ jobs:
        with:
          python-version: "3.8"
      - name: installing ansible
-       run: pip install ansible ansible-lint     
+       run: pip install ansible ansible-lint
+     - name: clearing existing key
+       run: ssh-add -D     
      - name: Configuring ssh connection
        uses: webfactory/ssh-agent@v0.5.1
        with:
