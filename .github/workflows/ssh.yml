@@ -21,7 +21,6 @@
       # known_hosts: ${{ secrets.SSH.HOST }}
       
          #   run: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> ~/.ssh/known_hosts
-
            
        - name: copy with rsync
          run: rsync -r app.py  devops@${{ secrets.SSH_HOST}}:/home/devops/
