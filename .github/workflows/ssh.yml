@@ -9,7 +9,7 @@
     ssh-to-remote:
       runs-on: ubuntu-latest
 
-      tasks:
+      steps:
        - name: checkout code
          uses: actions/checkout@v2
 
