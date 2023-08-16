@@ -3,7 +3,8 @@ name: ansible run action
 on:
   push:
     branches:
-      - main
+      - none
+workflow_dispatch:
 jobs:
   ansible_installation:
     runs-on: ubuntu-latest
