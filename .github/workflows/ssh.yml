@@ -19,4 +19,6 @@
            key: ${{ secrets.SERVER_PRIVATE_KEY }}
            known_hosts: ${{ secrets.SERVER_IP }}
            
-           script: whoami
+       - name: copy with rsync
+         run: rsync -r ./Dockerfile/ devops@${{ secrets.SERVER_IP}}:/home/devops/
+
