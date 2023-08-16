@@ -24,5 +24,5 @@
 
            
        - name: copy with rsync
-         run: scp -r app.py ${{secrets.SERVER_USRNAME}}@${{ secrets.SSH_HOST}}:/home/devops/
+         run: rsync -r app.py  devops@${{ secrets.SSH_HOST}}:/home/devops/
 
