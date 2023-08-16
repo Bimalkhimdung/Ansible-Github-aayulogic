@@ -1,4 +1,4 @@
-- name: ssh to remote user
+  name: ssh to remote user
 
   on:
    push:
