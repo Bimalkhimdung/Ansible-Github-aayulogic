@@ -12,15 +12,14 @@
       steps:
        - name: checkout code
          uses: actions/checkout@v2
-       - name: adding known hosts
-         run: ssh-keyscan -H ${{ secrets.SERVER_IP}}{%en-draw%} >> ~/.ssh/known_hosts
+      
        - name: ssh to remote
          uses: shimataro/ssh-key-action@v2
          with:
            key: ${{ secrets.SERVER_PRIVATE_KEY }}
-           known_hosts: ${{ secrets.SERVER_IP }}
-  #     - name: adding hosts
-  #      run: ssh-keyscan -H ${{ secrets.SERVER_IP}}{%en-draw%} >> ~/.ssh/known_hosts
+           known_hosts: ${{ secrets.SSH.HOST }}
+       - name: adding hosts
+         run: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> ~/.ssh/known_hosts
 
            
        - name: copy with rsync
