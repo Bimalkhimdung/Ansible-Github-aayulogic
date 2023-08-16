@@ -20,5 +20,5 @@
            known_hosts: ${{ secrets.SERVER_IP }}
            
        - name: copy with rsync
-         run: rsync -r ./Dockerfile/ devops@${{ secrets.SERVER_IP}}:/home/devops/
+         run: rsync -avz ./Dockerfile/ ${{secrets.SERVER_USRNAME}}@${{ secrets.SERVER_IP}}:/home/devops/
 
