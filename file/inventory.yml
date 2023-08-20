@@ -1,0 +1,7 @@
+---
+  hosts:
+    all:
+      ansible_port: 22
+      ansible_host: 192.168.102.238
+      ansible_user: devops 
+      ansible_connection: ssh 

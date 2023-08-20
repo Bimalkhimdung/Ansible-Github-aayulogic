@@ -1,9 +1,10 @@
   name: ssh to remote user
 
   on:
-   push:
-     branches:
-      - main
+  #  push:
+  #    branches:
+  #     - main
+   workflow_dispatch:
   jobs:
     ssh-to-remote:
       runs-on: ubuntu-latest
@@ -21,9 +22,7 @@
        - name: copy
          run: rsync -r ./aap.py devops@${{ secrets.SSH_HOST }}:/home/devops/
 
-      
-         #   run: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> ~/.ssh/known_hosts
-           
+                 
       #  - name: copy with rsync
       #    run: ansible-playbook ./Playbook/Action.yml -i inventory
    

@@ -3,8 +3,8 @@ name: ssh to remote user
 on:
  push:
    branches:
-     - none
- workflow_dispatch:
+     - main
+ #workflow_dispatch:
 
  
 
