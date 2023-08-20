@@ -7,7 +7,7 @@ jobs:
     Deploying-and-Operating:
        
         runs-on: ubuntu-latest
-                 
+        timeout-minutes: 10          
         steps:
             - name: Code checkout
               uses: actions/checkout@v2
