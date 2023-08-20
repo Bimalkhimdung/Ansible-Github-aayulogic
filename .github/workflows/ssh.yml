@@ -3,8 +3,8 @@
   on:
    push:
      branches:
-       - main
-
+      - none
+   workflow_dispatch:
   jobs:
     ssh-to-remote:
       runs-on: ubuntu-latest

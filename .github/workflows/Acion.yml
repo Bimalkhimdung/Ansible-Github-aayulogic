@@ -2,8 +2,7 @@ name: Di/CD
 on:
     push:
         branches: 
-            - none
-    workflow_dispatch:
+            - main
 jobs:
     Deploying-and-Operating:
        
@@ -17,7 +16,7 @@ jobs:
               with:
                 playbook: ./Playbook/Action.yml
                 directory: ./
-                key: ${{ secrets.SERVER_PRIVATE_KEY }}
+                key: ${{ secrets.SERVER_PRIVATE_KEY_1 }}
                 inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
                            
                 #if: github.event.push_request.merged == 'true'
