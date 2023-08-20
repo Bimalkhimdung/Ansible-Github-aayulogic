@@ -11,6 +11,7 @@ jobs:
         steps:
          - name: Code checkout
            uses: actions/checkout@v2
+           
          - name: Play Ansible Playbook
            uses: arillso/action.playbook@master
            with:
