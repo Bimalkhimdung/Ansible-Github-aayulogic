@@ -17,7 +17,7 @@ jobs:
                 playbook: ./Playbook/Action.yml
                 directory: ./
                 key: ${{ secrets.SERVER_PRIVATE_KEY_1 }}
-                inventory: ./inventory
+                inventory: inventory
                 #inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
                  
                 
