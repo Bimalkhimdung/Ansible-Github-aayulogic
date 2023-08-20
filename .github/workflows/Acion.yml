@@ -19,7 +19,7 @@ jobs:
                 key: ${{ secrets.SERVER_PRIVATE_KEY }}
                 inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
                 
-                
+            
                 #if: github.event.push_request.merged == 'true'
             #if: github.event_name == 'push' &&  github.ref ==  'refs/heads/main' && github.event.head_commit.message == 'merge'
 
