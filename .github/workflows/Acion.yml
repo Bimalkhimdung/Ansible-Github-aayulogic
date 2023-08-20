@@ -1,0 +1,24 @@
+name: Di/CD
+on:
+    push:
+        branches: 
+            - main
+jobs:
+    Deploying-and-Operating:
+       
+        runs-on: ubuntu-latest
+                 
+        steps:
+            - name: Code checkout
+              uses: actions/checkout@v2
+            - name: Running Ansible Playbook
+              uses: dawidd6/action-ansible-playbook@v2.5.0
+              with:
+                playbook: ./Playbook/Action.yml
+                directory: ./
+                key: ${{ secrets.SERVER_PRIVATE_KEY }}
+                inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
+                
+                
+                #if: github.event.push_request.merged == 'true'
+            #if: github.event_name == 'push' &&  github.ref ==  'refs/heads/main' && github.event.head_commit.message == 'merge'
