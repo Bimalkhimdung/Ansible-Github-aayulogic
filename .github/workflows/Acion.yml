@@ -2,8 +2,8 @@ name: Di/CD
 on:
     push:
         branches: 
-            - none
-    workflow_dispatch:
+            -main
+    #workflow_dispatch:
 jobs:
     Deploying-and-Operating:
        
