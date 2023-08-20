@@ -3,8 +3,7 @@
   on:
    push:
      branches:
-      - none
-   workflow_dispatch:
+      - main
   jobs:
     ssh-to-remote:
       runs-on: ubuntu-latest
@@ -22,6 +21,6 @@
       
          #   run: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> ~/.ssh/known_hosts
            
-       - name: copy with rsync
-         run: ansible-playbook ./Playbook/Action.yml -i inventory
+      #  - name: copy with rsync
+      #    run: ansible-playbook ./Playbook/Action.yml -i inventory
 
