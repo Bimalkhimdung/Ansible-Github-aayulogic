@@ -27,5 +27,5 @@ jobs:
          
      - name: rinning ansible playbook
        run: |
-            ansible-playbook ./Playbook/Actioin.yml 
+            ansible-playbook ./Playbook/Action.yml 
 

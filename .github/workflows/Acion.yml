@@ -12,15 +12,31 @@ jobs:
         steps:
             - name: Code checkout
               uses: actions/checkout@v2
-            - name: Running Ansible Playbook
-              uses: dawidd6/action-ansible-playbook@v2.5.0
+            - name: Play Ansible Playbook
+              uses: arillso/action.playbook@master
               with:
-                playbook: ./Playbook/Action.yml
-                directory: ./
-                key: ${{ secrets.SERVER_PRIVATE_KEY_1 }}
-                #inventory: ./file/inventory.yml
-                inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets               
+                    playbook: Playbook/Action.yml
+                    inventory: file/inventory.yml
+    #galaxy_file: tests/requirements.yml
+             env:
+                ANSIBLE_HOST_KEY_CHECKING: 'false'
+                ANSIBLE_DEPRECATION_WARNINGS: 'false'
+              
+            
+
+
+
+
+
+            # - name: Running Ansible Playbook
+            #   uses: dawidd6/action-ansible-playbook@v2.5.0
+            #   with:
+            #     playbook: ./Playbook/Action.yml
+            #     directory: ./
+            #     key: ${{ secrets.SERVER_PRIVATE_KEY_1 }}
+            #     #inventory: ./file/inventory.yml
+            #     inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets               
                 
-                #if: github.event.push_request.merged == 'true'
-            #if: github.event_name == 'push' &&  github.ref ==  'refs/heads/main' && github.event.head_commit.message == 'merge'
+            #     #if: github.event.push_request.merged == 'true'
+            # #if: github.event_name == 'push' &&  github.ref ==  'refs/heads/main' && github.event.head_commit.message == 'merge'
 
