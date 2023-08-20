@@ -15,7 +15,7 @@ jobs:
            uses: arillso/action.playbook@master
            with:
              playbook: Playbook/Action.yml
-             inventory: file/inventory.yml
+             inventory: ./inventory
     #galaxy_file: tests/requirements.yml
            env:
                 ANSIBLE_HOST_KEY_CHECKING: 'false'
