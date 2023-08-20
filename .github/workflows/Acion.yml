@@ -17,7 +17,8 @@ jobs:
                 playbook: ./Playbook/Action.yml
                 directory: ./
                 key: ${{ secrets.SERVER_PRIVATE_KEY_1 }}
-                inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
+                inventory: ./inventory
+                #inventory: ${{ secrets.ANSIBLE_INVENTORY }} #ansible inventory stored in github secrets
                  
                 
                 #if: github.event.push_request.merged == 'true'
