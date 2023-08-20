@@ -1,10 +1,9 @@
-  name: ssh to remote user
-
+  name: ssh
   on:
-  #  push:
-  #    branches:
-  #     - main
-   workflow_dispatch:
+    push:
+      branches:
+       - none
+    workflow_dispatch:
   jobs:
     ssh-to-remote:
       runs-on: ubuntu-latest
