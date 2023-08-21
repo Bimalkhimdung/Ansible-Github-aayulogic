@@ -17,7 +17,7 @@ jobs:
 
             mkdir -p /home/runner/.ssh/
             touch /home/runner/.ssh/id_rsa
-            echo -e "${{secrets.SERVER_PRIVATE_KEY}}" > /home/runner/.ssh/id_rsa
+            echo -e "${{ secrets.SERVER_PRIVATE_KEY_MAIN }}" > /home/runner/.ssh/id_rsa
             chmod 600 /home/runner/.ssh/id_rsa
             ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
          - name: Run ansible script
@@ -25,7 +25,7 @@ jobs:
            run: |
              service ssh status
             
-             ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i file/inventory.yml Action.yml
+             ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml ./Playbook/Action.yml
 
 
 
