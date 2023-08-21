@@ -27,7 +27,7 @@ jobs:
             chmod 600 /home/runner/.ssh/id_rsa.pub
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
             #ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
-            /home/runner/.ssh/known_hosts: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%}
+            ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> /home/runner/.ssh/known_hosts
          - name: Run ansible script
            shell: bash 
            run: |
