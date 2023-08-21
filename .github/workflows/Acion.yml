@@ -1,8 +1,8 @@
 name: Ci/CD
 on:
-    push:
-        branches: 
-            - none
+    # push:
+    #     branches: 
+    #         - none
     workflow_dispatch:
  
 jobs:

@@ -1,10 +1,10 @@
 name: ansible run action
 
 on:
-  push:
-    branches:
-      - none
-workflow_dispatch:
+  # push:
+  #   branches:
+  #     - none
+  workflow_dispatch:
 jobs:
   ansible_installation:
     runs-on: ubuntu-latest
