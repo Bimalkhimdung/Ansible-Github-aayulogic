@@ -25,6 +25,7 @@ jobs:
             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
             chmod 600 /home/runner/.ssh/id_rsa
             chmod 600 /home/runner/.ssh/id_rsa.pub
+            service ssh status
             
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
             #ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
@@ -34,7 +35,7 @@ jobs:
            shell: bash 
            run: |
              service ssh status
-             ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml ./Playbook/Action.yml
+             ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml ./Playbook/Action.yml --extra-vars " ${{secrets.SEVER_PASS}}"
 
 #             ansible-playbook ./Playbook/Action.yml -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml
             
