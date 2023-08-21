@@ -34,7 +34,9 @@ jobs:
            shell: bash 
            run: |
              service ssh status
-             ansible-playbook ./Playbook/Action.yml -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml
+             ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml ./Playbook/Action.yml
+
+#             ansible-playbook ./Playbook/Action.yml -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml
             
 
 
