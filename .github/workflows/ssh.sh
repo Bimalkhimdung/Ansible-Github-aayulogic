@@ -3,7 +3,7 @@
 remote_host="192.168.102.238"
 remote_user="devops"
 ssh_key="$PRIVATE_KEY"
-
+set -x
 mkdir -p ~/.ssh
 echo "$ssh_key" > ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
