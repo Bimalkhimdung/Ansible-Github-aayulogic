@@ -25,8 +25,10 @@ jobs:
             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
             chmod 600 /home/runner/.ssh/id_rsa
             chmod 600 /home/runner/.ssh/id_rsa.pub
+            
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
             #ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
+           
             ssh-keyscan -H ${{ secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
          - name: Run ansible script
            shell: bash 
