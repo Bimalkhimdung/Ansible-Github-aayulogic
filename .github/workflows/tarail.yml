@@ -15,7 +15,7 @@ jobs:
 
       - name: Set up SSH and run script
         env:
-          PRIVATE_KEY: ${{secrets.SERVER_PRIVATE_KEY_MAIN}}
+          PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
         run: |
           chmod +x .github/workflows/ssh.sh
           ./.github/workflows/ssh.sh
