@@ -14,17 +14,17 @@ jobs:
          - name: Setup SSH 
            shell: bash
            run: |
-            eval `ssh-agent -s`
+
             mkdir -p /home/runner/.ssh/
             touch /home/runner/.ssh/id_rsa
-            echo -e "${{secrets.SERVER_PRIVATE_KEY}}" >> /home/runner/.ssh/id_rsa
-            chmod 700 /home/runner/.ssh/id_rsa
+            echo -e "${{secrets.SERVER_PRIVATE_KEY}}" > /home/runner/.ssh/id_rsa
+            chmod 600 /home/runner/.ssh/id_rsa
             ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
          - name: Run ansible script
            shell: bash 
            run: |
              service ssh status
-             cd ./Playbook
+            
              ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} -i file/inventory.yml Action.yml
 
 
@@ -42,4 +42,5 @@ jobs:
                 
         #     #     #if: github.event.push_request.merged == 'true'
         #     # #if: github.event_name == 'push' &&  github.ref ==  'refs/heads/main' && github.event.head_commit.message == 'merge'
-
+#eval `ssh-agent -s`
+#cd ./Playbook
