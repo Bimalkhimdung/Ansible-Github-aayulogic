@@ -19,6 +19,7 @@ jobs:
             touch /home/runner/.ssh/id_rsa
             touch /home/runner/.ssh/id_rsa.pub
             touch /home/runner/.ssh/authorized_keys
+            touch/home/runner/.ssh/known_hosts
             echo -e '${{ secrets.SERVER_PRIVATE_KEY_MAIN }}' > /home/runner/.ssh/id_rsa
             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/id_rsa.pub
             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
