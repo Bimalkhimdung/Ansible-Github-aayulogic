@@ -1,0 +1,21 @@
+name: SSH Connection Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ssh_job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up SSH and run script
+        env:
+          PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY }}
+        run: |
+          chmod +x .github/workflows/ssh_script.sh
+          ./.github/workflows/ssh_script.sh

@@ -6,7 +6,7 @@
 #creating variables
   vars:
     git_repo: https://github.com/Bimalkhimdung/weather-app-backend-aayulogic.git
-    remote_dir: /home/devops/Test
+    remote_dir: /home/devops/Test/
 
  #all tasks are defined here
   tasks:
@@ -15,13 +15,14 @@
        name:
          - git
          - python3-pip
-         - python3 virtualenv
-  #  - name: pull repo from git-repository
-  #    git:
-  #       repo: "{{ git_repo}}"
-  #       dest: "{{ remote_dir }}/"
-  #       force: yes
-  #       update: yes  #This will update file if already presents
+
+
+   - name: pull repo from git-repository
+     git:
+        repo: "{{ git_repo}}"
+        dest: "{{ remote_dir }}/"
+        force: yes
+        update: yes  #This will update file if already presents
    - name: Create virtual environment
      shell: python3 -m venv {{ remote_dir }}/env
 
@@ -58,14 +59,11 @@
          args:
           chdir: "{{remote_dir}}"
 
-       - name: Runnig server
-         shell: |
-          python3 manage.py runserver  
 #       - name: feeding data
 #         shell: python3 manage.py feed_data_to_model
 #         args:
 #          chdir: /home/devops/Test/
-       
+
        - name:  start gunicorn server
          shell: /home/devops/Test/env/bin/gunicorn weather_app.wsgi:application --reload --bind 192.168.102.238
          args:

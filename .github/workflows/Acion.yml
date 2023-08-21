@@ -2,7 +2,8 @@ name: Ci/CD
 on:
     push:
         branches: 
-            - main
+            - none
+    workflow_dispatch:
  
 jobs:
     Deploying-and-Operating:    
@@ -39,8 +40,6 @@ jobs:
 
 #             ansible-playbook ./Playbook/Action.yml -u ${{secrets.SERVER_USERNAME}} -i ./file/inventory.yml
             
-
-
 
         #  - name: Running Ansible Playbook
         #    uses: dawidd6/action-ansible-playbook@v2.5.0
