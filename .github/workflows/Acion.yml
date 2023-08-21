@@ -23,9 +23,9 @@ jobs:
             # echo -e '${{ secrets.SERVER_PRIVATE_KEY_MAIN }}' > /home/runner/.ssh/id_rsa
             # echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/id_rsa.pub
             # echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
-            echo -e '${{ secrets.SERVER_PRIVATE_KEY_GIT }}' > /home/runner/.ssh/id_rsa
-            echo -e '${{ secrets.SERVER_PUBLIC_KEY_GIT }}' > /home/runner/.ssh/id_rsa.pub
-            echo -e '${{ secrets.SERVER_PUBLIC_KEY_GIT }}' > /home/runner/.ssh/authorized_keys
+            echo -e '${{ secrets.SERVER_PRIVATE_KEY_GIT }}' >> /home/runner/.ssh/id_rsa
+            echo -e '${{ secrets.SERVER_PUBLIC_KEY_GIT }}' >> /home/runner/.ssh/id_rsa.pub
+            echo -e '${{ secrets.SERVER_PUBLIC_KEY_GIT }}' >> /home/runner/.ssh/authorized_keys
             chmod 600 /home/runner/.ssh/id_rsa
             chmod 600 /home/runner/.ssh/id_rsa.pub
             service ssh status
