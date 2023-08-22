@@ -19,7 +19,7 @@ jobs:
    
      - name: SSH into server and execute command
        run: |
-        sshpass -p "$SSH_PASSWORD" ssh devopsr@192.168.102.238 "ls -la"
+        sshpass -p "$SSH_PASSWORD" ssh devops@192.168.102.238 "ls -la"
        env:
          SSH_PASSWORD: ${{ secrets.SEVER_PASS }}
          SSH_PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}
