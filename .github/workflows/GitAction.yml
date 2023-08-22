@@ -13,26 +13,28 @@ jobs:
          - name: Code checkout
            uses: actions/checkout@v2
          - name: Setup SSH 
-           shell: bash
+           #shell: bash
            run: |
 
-            mkdir -p /home/runner/.ssh/
-            touch /home/runner/.ssh/id_rsa
-            touch /home/runner/.ssh/id_rsa.pub
-            touch /home/runner/.ssh/authorized_keys
-            touch /home/runner/.ssh/known_hosts
-            echo -e '${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa
-            echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa.pub
-            echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/authorized_keys
-
-            chmod 600 /home/runner/.ssh/id_rsa.pub
+             mkdir -p /home/runner/.ssh/
+             touch /home/runner/.ssh/id_rsa
+             touch /home/runner/.ssh/id_rsa.pub
+             touch /home/runner/.ssh/authorized_keys
+             touch /home/runner/.ssh/known_hosts
+             echo -e '${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa
+             echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa.pub
+             echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/authorized_keys
+             chmod 600 /home/runner/.ssh/id_rsa.pub
+             cp -r ./file/inventory.yml /home/devops/
+           shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
             #service ssh status
             
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
             #ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
            
             #ssh-keyscan -H ${{ secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
-            cp -r ./file/inventory.yml /home/devops/
+            
+           
          
             # service ssh status
             # ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} ./Playbook/Action.yml -i ./file/inventory.yml  --extra-vars"${{secrets.SEVER_PASS}}"
