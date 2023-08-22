@@ -14,11 +14,11 @@ jobs:
      - name: Generate SSH key pair
        run: |
         mkdir -p ~/.ssh
-        ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-        echo "${HOME}/.ssh/id_rsa.pub" >> $GITHUB_ENV
+        mkdir -p ~/.ssh
+          ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
      - name: Copy SSH public key to remote server
        run: |
-         sshpass -p "${secrets.SEVER_PASS}" ssh-copy-id -i $(cat $GITHUB_ENV) devops@192.168.102.238
+          sshpass -p "${REMOTE_SERVER_PASSWORD}" ssh-copy-id -i ~/.ssh/id_rsa.pub devops@192.168.102.238
 
 
 
