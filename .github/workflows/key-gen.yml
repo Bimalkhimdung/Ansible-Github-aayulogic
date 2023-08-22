@@ -18,7 +18,7 @@ jobs:
           ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
      - name: Copy SSH public key to remote server
        run: |
-          sshpass -p "${secrets.SEVER_PASS}" ssh-copy-id -i ~/.ssh/id_rsa.pub devops@192.168.102.238
+          sshpass -p "${{secrets.SEVER_PASS}}" ssh-copy-id -i ~/.ssh/id_rsa.pub devops@192.168.102.238
 
 
 
