@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    home_dir: "/home/bimal/test-deploy/Ansible-Github-aayulogic"
+    ansible_user: "bimal"
+    inventory_dir: "/home/bimal/test-deploy/Ansible-Github-aayulogic"
+  tasks:
+    - name: creating venv
+      command: python3 -m venv env
+      args:
+        creates: env
+      become: false
+
+    - name: activate venv
+      shell: source env/bin/activate
+      args:
+        executable: /bin/bash
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ inventory_dir }}/env/bin"
+      run_once: true
+
+    - name: installing dependencies
+      pip:
+        requirements: requirements.txt
+      become_user: "{{ ansible_user }}"
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ inventory_dir }}/env/bin"
+
+    - name: running migrations
+      command: python manage.py migrate
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ inventory_dir }}/env/bin"
+      become_user: "{{ ansible_user }}"
+      args:
+        chdir: "{{ home_dir }}"
+
+    - name: running server
+      command: python manage.py runserver
+      environment:
+        PATH: "{{ ansible_env.PATH }}:{{ inventory_dir }}/env/bin"
+      become_user: "{{ ansible_user }}"
+      args:
+        chdir: "{{ home_dir }}"
