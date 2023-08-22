@@ -1,9 +1,9 @@
 name: Ci/CD
 on:
-    push:
-        branches: 
-            - Deploy
-    #workflow_dispatch:
+    # push:
+    #     branches: 
+    #         - Deploy
+    workflow_dispatch:
  
 jobs:
     Deploying-and-Operating:    
