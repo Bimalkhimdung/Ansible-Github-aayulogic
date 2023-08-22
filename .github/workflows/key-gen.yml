@@ -14,11 +14,15 @@ jobs:
      - name: Generate SSH key pair
        run: |
         mkdir -p ~/.ssh
-        mkdir -p ~/.ssh
-          ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
-     - name: Copy SSH public key to remote server
+        echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+   
+     - name: SSH into server and execute command
        run: |
-          sshpass -p "${{secrets.SEVER_PASS}}" ssh-copy-id -i ~/.ssh/id_rsa.pub devops@192.168.102.238
+        sshpass -p "$SSH_PASSWORD" ssh devopsr@192.168.102.238 "ls -la"
+       env:
+         SSH_PASSWORD: ${{ secrets.SEVER_PASS }}
+         SSH_PRIVATE_KEY: ${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}
 
 
 
