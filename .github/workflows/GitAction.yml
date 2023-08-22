@@ -2,7 +2,7 @@ name: Ci/CD
 on:
     push:
         branches: 
-            - none
+            - Deploy
     #workflow_dispatch:
  
 jobs:
