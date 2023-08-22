@@ -1,9 +1,10 @@
 name: SSH Connection Workflow
 
 on:
- push:
-  branches:
-    - Deploy
+#  push:
+#   branches:
+#     - Deploy
+ workflow_dispatch:
 
 jobs:
   ssh_job:
