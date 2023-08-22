@@ -15,6 +15,7 @@ jobs:
 
       - name: Set up SSH key
         run: |
+          mkdir -p ~/.ssh
           echo "$SERVER_PRIVATE_KEY_CUSTOM" > key.pem
           chmod 600 key.pem
           ssh-keyscan -H server_ip >> ~/.ssh/known_hosts
