@@ -1,0 +1,25 @@
+name: ssh
+on:
+  push:
+    branches:
+       - Deploy
+  #workflow_dispatch:
+jobs:
+  ssh-to-remote:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: checkout code
+       uses: actions/checkout@v2
+     - name: Generate SSH key pair
+       run: |
+         mkdir -p ~/.ssh
+         ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa -N ""
+         cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+         scp -r ~/.ssh/id_rsa.pub devops@192.168.102.238:/home/devops/.ssh/authorized_keys
+ 
+     - name: Upload SSH public key as artifact
+       uses: actions/upload-artifact@v2
+       with:
+         name: ssh-keys
+         path: ~/.ssh/id_rsa.pub
