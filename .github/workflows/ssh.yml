@@ -1,9 +1,9 @@
   name: ssh
   on:
-    push:
-      branches:
-         - Deploy
-    #workflow_dispatch:
+    # push:
+    #   branches:
+    #      - Deploy
+    workflow_dispatch:
   jobs:
     ssh-to-remote:
       runs-on: ubuntu-latest
@@ -11,14 +11,13 @@
       steps:
        - name: checkout code
          uses: actions/checkout@v2
-      
        - name: ssh to remote
          uses: shimataro/ssh-key-action@v2
          with:
-           key: ${{ secrets.SERVER_PRIVATE_KEY }}
+           key: ${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}
            known_hosts: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%}
       # known_hosts: ${{ secrets.SSH.HOST }}
-          run: rsync -r ./aap.py devops@${{ secrets.SSH_HOST }}:/home/devops/
+        run: rsync -r ./aap.py devops@${{ secrets.SSH_HOST }}:/home/devops/
 
                  
       #  - name: copy with rsync
