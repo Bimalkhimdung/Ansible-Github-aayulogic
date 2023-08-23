@@ -21,6 +21,6 @@
            if_key_exists: replace            
        - name: copy with rsync
          run: |
-             rsync -avz -e ssh ./aap.py devops@$192.168.102.238: /home/devops/
+             rsync -avz -e ssh ./aap.py devops@$192.168.102.238:/home/devops/
 
    
