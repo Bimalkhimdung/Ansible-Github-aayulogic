@@ -15,7 +15,7 @@ jobs:
               with:
                   playbook: ./Playbook/action-test1.yml
                   directory: ./
-                  key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
+                  key: ${{ secrets.SERVER_PUBLIC_KEY_MAIN }}
                   inventory: |
                     [all]
                     192.168.102.238 ansible_connection=ssh ansible_user=devops ansible_become_password=aayulogic
