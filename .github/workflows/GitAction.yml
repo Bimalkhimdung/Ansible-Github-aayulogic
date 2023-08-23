@@ -25,7 +25,7 @@ jobs:
              echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/id_rsa.pub
              echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
              chmod 600 /home/runner/.ssh/id_rsa.pub
-             ssh -i ${{secrets.SERVER_PUBLIC_KEY_MAIN }} devops@192.168.102.238
+             ssh -i /home/runner/.ssh/id_rsa.pub devops@192.168.102.238
              mkdir -p test
             #service ssh status
             
