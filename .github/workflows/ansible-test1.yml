@@ -10,6 +10,11 @@ jobs:
         steps:
             - name: code checkout
               uses: actions/checkout@v2
+            - name: steup python
+              uses: actions/setup-python@v2
+              with:
+                python-version: 3.8,3.9,3.10
+                
             - name: Run ansible playbook
               uses:  dawidd6/action-ansible-playbook@v2
               with:
