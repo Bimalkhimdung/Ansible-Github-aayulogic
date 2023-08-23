@@ -1,9 +1,9 @@
 name: ssh
 on:
-  push:
-    branches:
-       - Deploy
-  #workflow_dispatch:
+#   push:
+#     branches:
+#        - Deploy
+  workflow_dispatch:
 jobs:
   ssh-to-remote:
     runs-on: ubuntu-latest
