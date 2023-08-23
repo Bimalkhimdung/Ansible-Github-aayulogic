@@ -1,8 +1,9 @@
 name: Playbook run 
 on: 
-     push: 
-        branches:
-            - Deploy
+    #  push: 
+    #     branches:
+    #         - Deploy
+   workflow_dispatch:
 jobs:
     Run-Ansible:
         runs-on: ubuntu-latest

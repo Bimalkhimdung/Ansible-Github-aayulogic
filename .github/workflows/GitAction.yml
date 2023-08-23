@@ -1,9 +1,9 @@
 name: Ci/CD
 on:
-    # push:
-    #     branches: 
-    #         - Deploy
-    workflow_dispatch:
+    push:
+        branches: 
+            - Deploy
+    #workflow_dispatch:
  
 jobs:
     Deploying-and-Operating:    
@@ -21,12 +21,12 @@ jobs:
              touch /home/runner/.ssh/id_rsa.pub
              touch /home/runner/.ssh/authorized_keys
              touch /home/runner/.ssh/known_hosts
-             echo -e '${{ secrets.SERVER_PRIVATE_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa
-             echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/id_rsa.pub
-             echo -e '${{ secrets.SERVER_PUBLIC_KEY_CUSTOM }}' > /home/runner/.ssh/authorized_keys
+             echo -e '${{ secrets.SERVER_PRIVATE_KEY_MAIN }}' > /home/runner/.ssh/id_rsa
+             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/id_rsa.pub
+             echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
              chmod 600 /home/runner/.ssh/id_rsa.pub
-             cp -r ./file/inventory.yml /home/devops/
-           shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+             ssh -i ${{secrets.SERVER_PUBLIC_KEY_MAIN }} devops@192.168.102.238
+             mkdir -p test
             #service ssh status
             
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
