@@ -1,10 +1,10 @@
 name: ssh to remote user
 
 on:
-#  push:
-#    branches:
-#      - none
- workflow_dispatch:
+ push:
+   branches:
+     - none
+ #workflow_dispatch:
 
  
 
@@ -24,8 +24,11 @@ jobs:
     # known_hosts: ${{ secrets.SSH.HOST }}
     
        #   run: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%} >> ~/.ssh/known_hosts
-         
+     - name: Install Ansible
+       run: |
+         python -m pip install --upgrade pip
+         pip install ansible 
      - name: rinning ansible playbook
        run: |
-            ansible-playbook ./Playbook/Action.yml 
+            ansible-playbook ./Playbook/action-test1.yml -i ./inventory
 
