@@ -2,6 +2,8 @@
  - name: Run in ssh connection
    hosts: all
    gather_facts: no
+   become: true
+   become_user: root
 
    tasks:
     - name: making dir 
