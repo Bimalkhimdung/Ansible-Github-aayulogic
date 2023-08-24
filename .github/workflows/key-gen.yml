@@ -2,7 +2,7 @@ name: ssh
 on:
   push:
     branches:
-       - Deploy
+       - none
  # workflow_dispatch:
 jobs:
   ssh-to-remote:
