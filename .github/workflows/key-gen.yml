@@ -33,7 +33,7 @@ jobs:
        with:
             playbook: ./Playbook/action-test1.yml
             directory: ./
-            key: ${{ secrets.SERVER_PUBLIC_KEY_GIT}}
+            key: ${{ secrets.SERVER_PUBLIC_KEY_MAIN }}
             
             inventory: |
               [all]
