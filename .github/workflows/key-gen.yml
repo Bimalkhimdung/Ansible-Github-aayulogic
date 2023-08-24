@@ -25,7 +25,7 @@ jobs:
 
      - name: running ansible playbook
        run:
-        ansible-playbook ./Playbook/acton-test1.yml  -i ./inventory
+        ansible-playbook ./Playbook/action-test1.yml -i ./inventory
    
     #  - name: SSH into server and execute command
     #    run: |
