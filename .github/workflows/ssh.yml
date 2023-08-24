@@ -15,7 +15,6 @@
          uses: shimataro/ssh-key-action@v2
          with:
            key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
-           name: id_rsa
            #known_hosts: ssh-keyscan -H ${{ secrets.SSH_HOST}}{%en-draw%}
            known_hosts: unnecessary
            if_key_exists: replace  
