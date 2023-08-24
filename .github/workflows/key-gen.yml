@@ -23,9 +23,12 @@ jobs:
         chmod 600 ~/.ssh/id_rsa
         chmod 600 ~/.ssh/authorized_keys
      - name: ssh to remote
-       run: ssh devops@192.168.102.238
+       run: |
+       
+        sshpass -p 'aayulogic' ssh devops@192.168.102.238
      - name: making dir
        run: mkdir -p test 
+  # yes| ssh devops@192.168.102.238 
     #  - name: installing ansible
     #    run: |
     #     python -m pip install --upgrade pip
