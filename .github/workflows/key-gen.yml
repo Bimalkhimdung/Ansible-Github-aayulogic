@@ -17,6 +17,7 @@ jobs:
         ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
         cat ~/.ssh/id_rsa.pub
         echo -e "${{ secrets.SERVER_PUBLIC_KEY_MAIN }}" > ~/.ssh/authorized_keys
+        cat ~/.ssh/authorized_keys
         chmod 600 ~/.ssh/id_rsa
      - name: installing ansible
        run: |
