@@ -1,0 +1,22 @@
+name: ssh
+on:
+  push:
+    branches:
+       - Deploy
+ # workflow_dispatch:
+jobs:
+  ssh-to-remote:
+    runs-on: ubuntu-latest
+
+    steps:
+     - name: checkout code
+       uses: actions/checkout@v2
+     - name: Restart Server
+       uses: appleboy/ssh-action@master
+       with:
+         host: ${{ secrets.SSH_HOST }}
+         username: ${{ secrets.SERVER_USERNAME }}
+         key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
+         port: ${{ secrets.SSH_PORT }}
+         script: |
+          mkdir -p test

@@ -2,7 +2,8 @@
   on:
      push:
        branches:
-          - Deploy
+          #- Deploy
+           - none
     #workflow_dispatch:
   jobs:
     ssh-to-remote:
