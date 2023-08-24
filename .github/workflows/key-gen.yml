@@ -21,14 +21,16 @@ jobs:
         ls ~/.ssh/
         cat ~/.ssh/authorized_keys
         chmod 600 ~/.ssh/id_rsa
+     - name: ssh to remote
+       run: ssh -i ~/.ssh/id_rsa.pub devops@192.168.102.238
      - name: installing ansible
        run: |
         python -m pip install --upgrade pip
         pip install ansible
 
-     - name: running ansible playbook
-       run:
-        ansible-playbook ./Playbook/action-test1.yml -i ./inventory
+    #  - name: running ansible playbook
+    #    run:
+    #     ansible-playbook ./Playbook/action-test1.yml -i ./inventory
 
    
     #  - name: SSH into server and execute command
