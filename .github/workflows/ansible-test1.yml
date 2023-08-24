@@ -2,7 +2,7 @@ name: Playbook run
 on: 
      push: 
         branches:
-            - Deploy
+            - none
    #workflow_dispatch:
 jobs:
     Run-Ansible:
