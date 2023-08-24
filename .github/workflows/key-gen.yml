@@ -17,13 +17,13 @@ jobs:
         ssh-keygen -t rsa -b 4096 -N "" -f ~/.ssh/id_rsa
         cat ~/.ssh/id_rsa.pub
         
-        echo -e "${{ secrets.SERVER_PUBLIC_KEY_MAIN }}" > ~/.ssh/authorized_keys
+        echo -e "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDbuEC5eEqmGZgjxbarYILDzukx+WLJCoAX4NMV2Qn25ZiMPI8aHP0QGhKwYy7I2i6u/40LljqCpQJ59rreW2zErobL7OSr1CCOoRP0BCyGI7UT+G40UMaFxhkT38XEgr3h7gGIoq+kj0ZuJIePKR2XQ92tdZ0oufDaMmZm38WmJH9azHhaj5E8b+p+auWL/yN3mPyXjvYSChqteDGZb/G9tukEO8uYHS+XplFhAa+DKgRFsgUiql0kY9gcXIkvxawjivQRsKzw59+9owta2obZ5fzp+7WWUZn9ViApYcA1Gngoa6fgwvVHRLLicBT/k1bk9enBs6cdMOoB3POe3GvXBK4HaXmAjE28Uhlzj+6rn4GZ5h49g73sVUOZMo93LqbeBcQUF05JRfEGfHLafRjhwO//9cCGv//Scc3YG9EKpFH0kYEnr7UjiWwSWWA71DXkZgFJgvrwy7ej2Jipxz6mGWmKBd4y3lkNFft2NzmRmdT08LtQmMjJdVEXyR5/p1c= devops@biraj" > ~/.ssh/authorized_keys
         ls ~/.ssh/
         cat ~/.ssh/authorized_keys
         chmod 600 ~/.ssh/id_rsa
         chmod 600 ~/.ssh/authorized_keys
      - name: ssh to remote
-       run: ssh  -i ${{secrets.SERVER_PRIVATE_KEY_MAIN}} devops@192.168.102.238
+       run: ssh devops@192.168.102.238
      - name: making dir
        run: mkdir -p test 
     #  - name: installing ansible
@@ -46,7 +46,7 @@ jobs:
     #  - name: running ansible playbook
     #    run:
     #     ansible-playbook ./Playbook/action-test1.yml -i ./inventory
-    
+
 
    
     #  - name: SSH into server and execute command
