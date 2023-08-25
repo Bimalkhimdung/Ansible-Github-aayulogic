@@ -2,12 +2,13 @@
   on:
      push:
        branches:
-          #- Deploy
-           - none
+          - Deploy
+          # - none
     #workflow_dispatch:
   jobs:
     ssh-to-remote:
-      runs-on: ubuntu-latest
+     # runs-on: ubuntu-latest
+      runs-on: self-hosted
 
       steps:
        - name: checkout code
