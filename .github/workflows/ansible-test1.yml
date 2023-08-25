@@ -17,6 +17,7 @@ jobs:
               uses: actions/setup-python@v2
               with:
                 python-version: 3.8
+                
             - name: Install Ansible
               run: |
                   python -m pip install --upgrade pip
@@ -26,7 +27,7 @@ jobs:
               with:
                   playbook: ./Playbook/action-test1.yml
                   directory: ./
-                  key: ${{ secrets.SERVER_PUBLIC_KEY_GIT}}
+                  key: ${{ secrets.SERVER_PUBLIC_KEY_MAIN}}
                   
                   inventory: |
                     [all]
