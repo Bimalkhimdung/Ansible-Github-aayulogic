@@ -25,17 +25,13 @@ jobs:
              echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/id_rsa.pub
              echo -e '${{ secrets.SERVER_PUBLIC_KEY_MAIN }}' > /home/runner/.ssh/authorized_keys
              chmod 600 /home/runner/.ssh/id_rsa.pub
-             ssh -i /home/runner/.ssh/id_rsa.pub devops@192.168.102.238
+             ssh -i /home/runner/.ssh/id_rsa.pub user@192.168.102.54
              mkdir -p test
             #service ssh status
             
             #sh-keyscan -H ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
             #ssh-keyscan -t rsa,dsa,ecdsa,ed25519 ${{secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
-           
-            #ssh-keyscan -H ${{ secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts
-            
-           
-         
+            #ssh-keyscan -H ${{ secrets.SSH_HOST}} >> /home/runner/.ssh/known_hosts       
             # service ssh status
             # ansible-playbook -vvv --private-key /home/runner/.ssh/id_rsa -u ${{secrets.SERVER_USERNAME}} ./Playbook/Action.yml -i ./file/inventory.yml  --extra-vars"${{secrets.SEVER_PASS}}"
 
