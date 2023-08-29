@@ -1,9 +1,9 @@
-name: ssh
+name: Running Scripts
 on:
-  # push:
-  #   branches:
-  #      - none
- workflow_dispatch:
+   push:
+     branches:
+        - Deploy
+ #workflow_dispatch:
 jobs:
   ssh-to-remote:
     runs-on: ubuntu-latest
@@ -11,12 +11,15 @@ jobs:
     steps:
      - name: checkout code
        uses: actions/checkout@v2
-     - name: Restart Server
+     - name: Running Script in  Server
        uses: appleboy/ssh-action@master
        with:
-         host: ${{ secrets.SSH_HOST }}
-         username: ${{ secrets.SERVER_USERNAME }}
-         key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
-         port: ${{ secrets.SSH_PORT }}
+         host: 192.168.102.238
+         username: devops
+         key: ${{ secrets.LOCAL_PRIVATE_KEY }}
+         port: 22
          script: |
-            ansible-playbook ./Playbook/Action.yml -i inventory
+              pwd 
+              ls
+              chmod +x ~/Scripts/scripts.sh
+              ./Scripts/scripts.sh
