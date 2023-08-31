@@ -1,0 +1,10 @@
+--- 
+ - name: Run in ssh connection
+   hosts: all
+   gather_facts: no
+
+   tasks:
+    - name: making dir 
+      shell: mkdir test
+      args:
+        executable: /bin/bash
