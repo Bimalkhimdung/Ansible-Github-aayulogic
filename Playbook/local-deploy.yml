@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   gather_facts: no
+  become_user: bimal
   vars:
     home_dir: "/home/bimal/test-deploy/Ansible-Github-aayulogic"
     ansible_user: "bimal"
