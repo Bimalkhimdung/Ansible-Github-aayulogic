@@ -15,7 +15,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up SSH key
-        uses: actions/run-ansible-playbook@v2
-        with:
-          inventory: ~/inventory.ini
-          playbook: ~/Playbook/gitaction.yml
+        run: |
+              sudo apt install net-tools
+              ifconfig
