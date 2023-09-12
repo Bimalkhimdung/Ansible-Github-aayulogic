@@ -16,10 +16,9 @@ jobs:
        with:
          host: 192.168.102.238
          username: devops
-         key: ${{ secrets.LOCAL_PRIVATE_KEY }}
-         port: 22
+         key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
+      
          script: |
               pwd 
               ls
-              chmod +x ~/Scripts/scripts.sh
-              ./Scripts/scripts.sh
+              
