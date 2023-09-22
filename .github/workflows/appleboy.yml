@@ -1,9 +1,6 @@
 name: Running Scripts
 on:
-   push:
-     branches:
-        - none
- #workflow_dispatch:
+  workflow_dispatch:
 jobs:
   ssh-to-remote:
     runs-on: ubuntu-latest
@@ -14,9 +11,9 @@ jobs:
      - name: Running Script in  Server
        uses: appleboy/ssh-action@master
        with:
-         host: 192.168.102.238
+         host: 172.31.39.98
          username: devops
-         key: ${{ secrets.SERVER_PRIVATE_KEY_MAIN }}
+         key: ${{ secrets.AWS_KEY }}
       
          script: |
               pwd 
