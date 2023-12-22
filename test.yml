@@ -1,0 +1,11 @@
+---
+- name: test for making folder
+  hosts: vapt
+  gather_facts: no 
+  tasks:
+   - name: this is test 
+     shell: |
+         ls -la
+         mkdir test
+     args:
+        executable: /bin/bash
