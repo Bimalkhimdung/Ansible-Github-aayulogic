@@ -1,0 +1,16 @@
+on:
+    push:
+        branches:
+            - self-hosted
+jobs:
+    test:
+        runs-on: self-hosted
+        steps:
+          - name: checkout code
+            uses: actions/checkout@v2
+          - name: test
+            run: |
+                 pwd 
+                 ls
+                 ls -la
+
