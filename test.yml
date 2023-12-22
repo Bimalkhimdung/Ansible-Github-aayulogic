@@ -1,6 +1,7 @@
 ---
 - name: test for making folder
   hosts: vapt
+  connection: ssh
   gather_facts: no 
   tasks:
    - name: this is test 

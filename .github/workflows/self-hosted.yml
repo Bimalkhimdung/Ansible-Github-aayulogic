@@ -10,10 +10,6 @@ jobs:
             uses: actions/checkout@v2
           - name: test
             run: |
-                 ssh vapt.realhrsoft.com
-                 pwd 
-                 ls
-                 ls -la
-                 mkdir test
+                ansible-playbook ./test.yml -i inventory
             
 
